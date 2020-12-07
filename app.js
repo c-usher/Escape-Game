@@ -14,4 +14,9 @@
    
    https://i.pinimg.com/564x/38/03/8f/38038f87a7a46ce32f9c24fbb8159782.jpg -- Boss Room
    
-   https://static.wikia.nocookie.net/arrow/images/b/bb/Kara_Danvers%27_pod.png/revision/latest/scale-to-width-down/1000?cb=20170113123409 -- Escape Pod*/
+   https://static.wikia.nocookie.net/arrow/images/b/bb/Kara_Danvers%27_pod.png/revision/latest/scale-to-width-down/1000?cb=20170113123409 -- Escape Pod
+   
+   https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/1606929033716-9BUVFHX8H8LJO204O1Q0/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/image-asset.jpeg?format=2500w -- you lose
+   
+   https://cdna.artstation.com/p/assets/images/images/017/763/240/large/adam-mossakowski-ship10.jpg?1557252246 -start screen*/
+

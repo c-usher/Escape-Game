@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  pad: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: black;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
