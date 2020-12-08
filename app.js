@@ -6,14 +6,30 @@ const mazeImages = [
   "https://www.relyonhorror.com/wp-content/uploads/2016/09/syndrome.jpg",
   "https://onlysp.escapistmagazine.com/wp-content/uploads/2016/08/Syndrome-Banner-800x400.jpg",
 ];
-
-const pointerCards = [
+const directionCards = [
     "https://imgur.com/a/5JbNRsW",
     "https://imgur.com/a/I2iHUxq",
     "https://imgur.com/a/u9tEYjG"
 ];
 
 
+const random = mazeImages[Math.floor(Math.random() * mazeImages.length)];
+console.log(random);
+// movement = (direction) => {
+
+//     return mazeImages[Math.floor(math.random() * mazeImages.length)];
+
+// }
+
+$(() => {
+    const $hand = $('#hand');
+    const $randomMazeImage = $('<img>').attr('src', mazeImages[Math.floor(Math.random() * mazeImages.length)]);
+    const movement = (direction) => {
+        $($hand).append($randomMazeImage);
+    };
+    movement();
+
+})
 
 
 
