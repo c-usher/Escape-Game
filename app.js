@@ -7,3 +7,14 @@ const mazeImages = [
   "https://onlysp.escapistmagazine.com/wp-content/uploads/2016/08/Syndrome-Banner-800x400.jpg",
 ];
 
+const pointerCards = [
+    "https://imgur.com/a/5JbNRsW",
+    "https://imgur.com/a/I2iHUxq",
+    "https://imgur.com/a/u9tEYjG"
+];
+
+
+
+
+
+
