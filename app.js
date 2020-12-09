@@ -38,4 +38,5 @@ $(() => {
     createHand();
     createHand();
     createHand();
+    createHand();
 });
