@@ -16,6 +16,13 @@ body {
   
 }
 
+#start-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #start-screen {
     position: relative;
     text-align: center;
@@ -27,12 +34,7 @@ body {
   max-height: 100%;
 }
 
-#start-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+
 
 #hand {
     max-width: 100%;

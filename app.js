@@ -7,30 +7,35 @@ const mazeImages = [
   "https://onlysp.escapistmagazine.com/wp-content/uploads/2016/08/Syndrome-Banner-800x400.jpg",
 ];
 const directionCards = [
-    "https://imgur.com/a/5JbNRsW",
-    "https://imgur.com/a/I2iHUxq",
-    "https://imgur.com/a/u9tEYjG"
+  "https://i.imgur.com/fJqvBNO.png", //Forward
+  "https://i.imgur.com/XzulilU.png", //Right
+  "https://i.imgur.com/VXorAnC.png", //Left
 ];
 
+const handArray = [];
 
-const random = mazeImages[Math.floor(Math.random() * mazeImages.length)];
-console.log(random);
-// movement = (direction) => {
+const $hand = $("#hand");
+const $mainScreen = $("#main-screen");
 
-//     return mazeImages[Math.floor(math.random() * mazeImages.length)];
 
-// }
+const changeMainScreen = () => {
+    const $randomMazeImage = $("<img>").attr("src", mazeImages[Math.floor(Math.random() * mazeImages.length)]);
+    $($mainScreen).append($randomMazeImage);
+};
+
+const createHand = () => {
+    const $randomDirectionCard = $("<img>").attr("src", directionCards[Math.floor(Math.random() * directionCards.length)]);
+    
+    for (cards of directionCards) {
+        const $li = $("<li>")
+            .append($randomDirectionCard)
+            .appendTo($hand);
+    };
+}
 
 $(() => {
-    const $hand = $('#hand');
-    const $randomMazeImage = $('<img>').attr('src', mazeImages[Math.floor(Math.random() * mazeImages.length)]);
-    const movement = (direction) => {
-        $($hand).append($randomMazeImage);
-    };
-    movement();
-
-})
-
-
-
-
+    changeMainScreen();
+    createHand();
+    createHand();
+    createHand();
+});
