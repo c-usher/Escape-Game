@@ -38,5 +38,4 @@ $(() => {
     createHand();
     createHand();
     createHand();
-    createHand();
 });
