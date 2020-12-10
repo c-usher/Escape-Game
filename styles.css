@@ -53,5 +53,9 @@ body {
   border: solid 1em black;
   display: flex;
   justify-content: center;
-  
+}
+
+#combat-button-box-background{
+  max-width: 15%;
+  max-height: 5%;
 }
