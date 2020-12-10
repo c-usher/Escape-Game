@@ -133,5 +133,4 @@ $attackButton.on("click", () => {
 $(() => {
   $combatButtonBox.hide();
 
-  //aaa
 });
