@@ -103,12 +103,17 @@ const generateEnemy = () => {
 const combat = () => {
   $combatButtonBox.show();
   $(".attacked").text('Your Being Attacked!');
-  // enemyInCombat[0].attack(hero);
-  $attackButton.on("click", () => {
-    hero.attack(enemyInCombat[0]);
-    console.log(hero.hp);
-    console.log(enemyInCombat[0].hp);
-  });
+  enemyInCombat[0].attack(hero);
+  if (hero.hp <= 0) {
+    alert("You Lose!")
+  }
+  if (enemyInCombat[0].hp <= 0) {
+    for (index of enemyInCombat) {
+      enemyGraveyard.push(index);
+    };
+    enemyInCombat.pop();
+    alert("You Killed Him");
+  }
 };
 
 const hero = new Character(100, 5, "Cody");
@@ -117,6 +122,11 @@ $startButton.on("click", () => {
   $startScreen.remove();
   createHand();
   chosenDirection();
+});
+
+$attackButton.on("click", () => {
+  hero.attack(enemyInCombat[0]);
+  combat();
 });
 
 
