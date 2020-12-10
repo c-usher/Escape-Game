@@ -126,7 +126,7 @@ $startButton.on("click", () => {
 
 $attackButton.on("click", () => {
   hero.attack(enemyInCombat[0]);
-  combat();
+  combat();//cambat
 });
 
 
