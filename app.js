@@ -43,8 +43,6 @@ const enemyInCombat = [];
 const enemyGraveyard = [];
 let hero = '';
 
-
-
 const $hand = $("#hand");
 const $mainScreen = $("#main-screen");
 const $startScreen = $("#start-screen");
@@ -56,6 +54,7 @@ const $restartButton = $('#restart-button');
 const $combatButtonBox = $("#combat-button-box");
 const $bossBattleImage = $("<img>").attr("src", "defaultImages/bossBattleImage.jpeg");
 const $gameOverImage = $("<img>").attr("src", "defaultImages/gameOverImage.jpg");
+const $enemyImage = $("<img>").attr("src", "defaultImages/enemy.png");
 
 const $randomDirectionCard = () =>
   $("<img>").attr(
@@ -65,13 +64,12 @@ const $randomDirectionCard = () =>
 
 const chosenDirection = () => {
   const mazeImage = mazeImages[Math.floor(Math.random() * mazeImages.length)];
-  $(".died").hide();
-  $(".killedHim").hide();
   const $randomMazeImage = $("<img>")
     .attr("src", mazeImage)
     .addClass("maze-image");
   currentMazeImage.unshift(mazeImage);
   $($mainScreen).append($randomMazeImage);
+  $(".wonFight").text("");
   if (currentMazeImage.length === 2) {
     currentMazeImage.pop();
   }
@@ -81,11 +79,13 @@ const chosenDirection = () => {
     currentMazeImage[0] === mazeImages[4] ||
     currentMazeImage[0] === mazeImages[5]
   ) {
+    $enemyImage.appendTo($mainScreen);
+    $enemyImage.show();
     generateEnemy();
     combat();
   } else {
     $combatButtonBox.hide();
-    $(".attacked").text("");
+    $enemyImage.hide();
   }
 
   if (enemyGraveyard.length === 6) {
@@ -113,7 +113,7 @@ const createHand = () => {
 };
 
 const generateEnemy = () => {
-  const enemy = new Character(100, 5, "enemy");
+  const enemy = new Character(50, 0, "enemy");
   enemyInCombat.unshift(enemy);
 }
 
@@ -134,14 +134,16 @@ const combat = () => {
     $restartButton.show();
     $gameOverImage.appendTo($gameOverScreen);
     $gameOverScreen.show();
-
   }
+  
   if (enemyInCombat[0].hp <= 0) {
     for (index of enemyInCombat) {
       enemyGraveyard.push(index);
     };
     enemyInCombat.pop();
-    $("<h1>").text("You Killed Him!").addClass("killedHim").appendTo($mainScreen);
+    $combatButtonBox.hide();
+    $hand.show();
+    $("<h1>").text("You Defeated the enemy").addClass('wonFight').appendTo($mainScreen);
   }
 };
 
@@ -155,6 +157,7 @@ $startButton.on("click", () => {
 $attackButton.on("click", () => {
   hero.attack(enemyInCombat[0]);
   combat();
+
 });
 
 $restartButton.on("click", () => {
@@ -167,6 +170,5 @@ $restartButton.on("click", () => {
 $(() => {
   $combatButtonBox.hide();
   $restartButton.hide();
-
-
+  $enemyImage.hide();
 });
