@@ -127,7 +127,6 @@ const createHand = () => {
         $(".maze-image").remove();
         chosenDirection();
         hero.drawCard();
-        isClicked = false;
       })
       .append($randomDirectionCard())
       .appendTo($hand);
@@ -154,16 +153,15 @@ const generateHero = () => {
 const combat = () => {
   $combatButtonBox.show();
   $hand.hide();
-  console.log(isClicked);
   $(".attacked")
     .text("Your Being Attacked!")
     .addClass("attack-announce")
     .appendTo($combatButtonBox);
   if (isClicked === true) {
     enemyInCombat[0].attack(hero);
-    $enemyImage.animate({ left: "+=3em" }, "fast", function () {
-      $enemyImage.animate({ right: "+=3em" }, "fast",);
-    });
+    $enemyImage.animate({ left: "+=1em" }, "fast");
+    $enemyImage.animate({ left: "-=1em" }, "fast");
+    isClicked = false;
   }
   if (hero.hp <= 0) {
     $("<h1>").text("You Died!").addClass("died").appendTo($gameOverScreen);
@@ -201,13 +199,11 @@ $attackButton.on("click", () => {
   hero.attack(enemyInCombat[0]);
   isClicked = true;
   combat();
-  console.log(hero.hp);
 });
 
 $runButton.on("click", () => {
   if (hero.ep > 0) {
     hero.ep -= 25;
-    console.log(hero.ep);
     $(".maze-image").remove();
     $hand.show();
     chosenDirection();
@@ -234,13 +230,16 @@ $restartButton.on("click", () => {
   $(".died").remove();
   $bossBattleImage.hide();
   $(".win-announce").remove();
+  // help here? //
   for (index of enemyGraveyard) {
     enemyGraveyard.pop();
     enemyGraveyard.pop();
     enemyGraveyard.pop();
     enemyGraveyard.pop();
     enemyGraveyard.pop();
-  }
+    enemyGraveyard.pop();
+  };
+  console.log(enemyGraveyard);
 });
 
 $(() => {
