@@ -123,7 +123,7 @@ const generateHero = () => {
 const combat = () => {
   $combatButtonBox.show();
   $hand.hide()
-  $(".attacked").text('Your Being Attacked!').appendTo($combatButtonBox);
+  $(".attacked").text('Your Being Attacked!').addClass("attack-announce").appendTo($combatButtonBox);
   enemyInCombat[0].attack(hero);
   if (hero.hp <= 0) {
     $("<h1>").text("You Died!").addClass("died").appendTo($gameOverScreen);
@@ -157,7 +157,6 @@ $startButton.on("click", () => {
 $attackButton.on("click", () => {
   hero.attack(enemyInCombat[0]);
   combat();
-
 });
 
 $runButton.on("click", () => {
@@ -167,8 +166,12 @@ $runButton.on("click", () => {
     $(".maze-image").remove();
     $hand.show();
     chosenDirection();
-  }
-})
+  } else {
+    $("<h1>").text("Your out of energy! You must fight!").addClass("energy-announce").appendTo($combatButtonBox);
+    $(".attack-announce").hide();
+    $runButton.hide();
+  };
+});
 
 $restartButton.on("click", () => {
   $gameOverScreen.hide();
