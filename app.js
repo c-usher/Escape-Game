@@ -1,14 +1,13 @@
 class Character {
   constructor(hp, dmg, name) {
     this.hp = hp;
-    this.sp = 100;
+    this.ep = 100;
     this.dmg = dmg;
     this.name = name;
   }
 
   attack(enemy) {
     enemy.hp -= this.dmg;
-    this.sp -= 10;
   }
 
   drawCard() {
@@ -113,7 +112,7 @@ const createHand = () => {
 };
 
 const generateEnemy = () => {
-  const enemy = new Character(50, 0, "enemy");
+  const enemy = new Character(50, 2, "enemy");
   enemyInCombat.unshift(enemy);
 }
 
@@ -130,6 +129,7 @@ const combat = () => {
     $("<h1>").text("You Died!").addClass("died").appendTo($gameOverScreen);
     $combatButtonBox.hide();
     $('.maze-image').hide();
+    $enemyImage.hide();
     $hand.children().remove();
     $restartButton.show();
     $gameOverImage.appendTo($gameOverScreen);
@@ -159,6 +159,16 @@ $attackButton.on("click", () => {
   combat();
 
 });
+
+$runButton.on("click", () => {
+  if (hero.ep > 0) {
+    hero.ep -= 25;
+    console.log(hero.ep);
+    $(".maze-image").remove();
+    $hand.show();
+    chosenDirection();
+  }
+})
 
 $restartButton.on("click", () => {
   $gameOverScreen.hide();
