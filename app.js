@@ -55,13 +55,13 @@ const $combatButtonBox = $("#combat-button-box");
 const $bossBattleImage = $("<img>").attr(
   "src",
   "defaultImages/bossBattleImage.jpeg"
-);
+).addClass("boss-image");
 const $gameOverImage = $("<img>").attr(
   "src",
   "defaultImages/gameOverImage.jpg"
-);
-const $enemyImage = $("<img>").attr("src", "defaultImages/enemy.png");
-const $escapePodImage = $("<img>").attr("src", "defaultImages/escapePod.png");
+).addClass("game-over-image");
+const $enemyImage = $("<img>").attr("src", "defaultImages/enemy.png").addClass("enemy-image");
+const $escapePodImage = $("<img>").attr("src", "defaultImages/escapePod.png").addClass("win-image");
 
 const $randomDirectionCard = () =>
   $("<img>").attr(
@@ -161,6 +161,9 @@ const combat = () => {
     .appendTo($combatButtonBox);
   if (isClicked === true) {
     enemyInCombat[0].attack(hero);
+    $enemyImage.animate({ left: "+=3em" }, "fast", function () {
+      $enemyImage.animate({ right: "+=3em" }, "fast",);
+    });
   }
   if (hero.hp <= 0) {
     $("<h1>").text("You Died!").addClass("died").appendTo($gameOverScreen);
