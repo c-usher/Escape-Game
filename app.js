@@ -41,6 +41,7 @@ const currentMazeImage = [];
 const enemyInCombat = [];
 const enemyGraveyard = [];
 let hero = '';
+let isClicked = false;
 
 const $hand = $("#hand");
 const $mainScreen = $("#main-screen");
@@ -54,6 +55,7 @@ const $combatButtonBox = $("#combat-button-box");
 const $bossBattleImage = $("<img>").attr("src", "defaultImages/bossBattleImage.jpeg");
 const $gameOverImage = $("<img>").attr("src", "defaultImages/gameOverImage.jpg");
 const $enemyImage = $("<img>").attr("src", "defaultImages/enemy.png");
+const $escapePodImage = $("<img>").attr("src", "defaultImages/escapePod.png");
 
 const $randomDirectionCard = () =>
   $("<img>").attr(
@@ -68,7 +70,6 @@ const chosenDirection = () => {
     .addClass("maze-image");
   currentMazeImage.unshift(mazeImage);
   $($mainScreen).append($randomMazeImage);
-  $(".wonFight").text("");
   if (currentMazeImage.length === 2) {
     currentMazeImage.pop();
   }
@@ -88,9 +89,26 @@ const chosenDirection = () => {
   }
 
   if (enemyGraveyard.length === 6) {
+    console.log(enemyGraveyard);
+    $('.maze-image').remove();
+    $enemyImage.hide();
     $mainScreen.append($bossBattleImage);
-    generateEnemy();
+    $bossBattleImage.show();
+    generateBoss();
     combat();
+    console.log(enemyGraveyard.length);
+  }
+
+  if (enemyGraveyard.length > 6) {
+    $bossBattleImage.hide();
+    $('.maze-image').remove();
+    $hand.hide();
+    $combatButtonBox.hide();
+    $enemyImage.hide();
+    $escapePodImage.appendTo($mainScreen);
+    $("<h1>").text("YOU WIN!").addClass("win-announce").appendTo($mainScreen);
+    $(".win-announce").show();
+    $escapePodImage.show();
   }
 };
 
@@ -116,15 +134,25 @@ const generateEnemy = () => {
   enemyInCombat.unshift(enemy);
 }
 
+const generateBoss = () => {
+  const boss = new Character(10, 2, "boss");
+  enemyInCombat.unshift(boss);
+}
+
 const generateHero = () => {
    hero = new Character(10, 5, "Cody");
 }
 
 const combat = () => {
   $combatButtonBox.show();
+  isClicked = false;
   $hand.hide()
+  console.log("HP" + hero.hp);
+  console.log(isClicked);
   $(".attacked").text('Your Being Attacked!').addClass("attack-announce").appendTo($combatButtonBox);
-  enemyInCombat[0].attack(hero);
+  if (isClicked === true) {
+    enemyInCombat[0].attack(hero);
+  }
   if (hero.hp <= 0) {
     $("<h1>").text("You Died!").addClass("died").appendTo($gameOverScreen);
     $combatButtonBox.hide();
@@ -140,10 +168,10 @@ const combat = () => {
     for (index of enemyInCombat) {
       enemyGraveyard.push(index);
     };
+    $enemyImage.hide();
     enemyInCombat.pop();
     $combatButtonBox.hide();
     $hand.show();
-    $("<h1>").text("You Defeated the enemy").addClass('wonFight').appendTo($mainScreen);
   }
 };
 
@@ -158,6 +186,7 @@ $startButton.on("click", () => {
 
 $attackButton.on("click", () => {
   hero.attack(enemyInCombat[0]);
+  isClicked = true;
   combat();
 });
 
@@ -183,9 +212,19 @@ $restartButton.on("click", () => {
   $enemyImage.hide();
   $startScreen.show();
   $restartButton.hide();
+  $(".win-announce").hide();
+  $escapePodImage.hide();
   $(".died").remove();
+  $bossBattleImage.hide();
+  $(".win-announce").remove();
+  for (index of enemyGraveyard) {
+    enemyGraveyard.pop();
+    enemyGraveyard.pop();
+    enemyGraveyard.pop();
+    enemyGraveyard.pop();
+    enemyGraveyard.pop();
+  }
 });
-
 
 $(() => {
   $combatButtonBox.hide();
