@@ -112,12 +112,12 @@ const createHand = () => {
 };
 
 const generateEnemy = () => {
-  const enemy = new Character(50, 2, "enemy");
+  const enemy = new Character(10, 2, "enemy");
   enemyInCombat.unshift(enemy);
 }
 
 const generateHero = () => {
-   hero = new Character(100, 5, "Cody");
+   hero = new Character(10, 5, "Cody");
 }
 
 const combat = () => {
@@ -149,6 +149,8 @@ const combat = () => {
 
 $startButton.on("click", () => {
   $startScreen.hide();
+  $mainScreen.show();
+  $restartButton.show();
   generateHero();
   createHand();
   chosenDirection();
@@ -175,13 +177,18 @@ $runButton.on("click", () => {
 
 $restartButton.on("click", () => {
   $gameOverScreen.hide();
+  $(".maze-image").remove();
+  $combatButtonBox.hide();
+  $hand.children().remove();
+  $enemyImage.hide();
   $startScreen.show();
-  
-})
+  $restartButton.hide();
+  $(".died").remove();
+});
 
 
 $(() => {
   $combatButtonBox.hide();
-  $restartButton.hide();
   $enemyImage.hide();
+  $restartButton.hide();
 });
