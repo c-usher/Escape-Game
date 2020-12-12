@@ -63,6 +63,12 @@ const $gameOverImage = $("<img>").attr(
 const $enemyImage = $("<img>").attr("src", "defaultImages/enemy.png").addClass("enemy-image");
 const $escapePodImage = $("<img>").attr("src", "defaultImages/escapePod.png").addClass("win-image");
 
+const clearTheGraveyard = (array) => {
+  while (array.length > 0) {
+    array.pop();
+  };
+}
+
 const $randomDirectionCard = () =>
   $("<img>").attr(
     "src",
@@ -120,6 +126,8 @@ const chosenDirection = () => {
     $("<h1>").text("YOU WIN!").addClass("win-announce").appendTo($mainScreen);
     $(".win-announce").show();
     $escapePodImage.show();
+    clearTheGraveyard(enemyGraveyard);
+    console.log(enemyGraveyard);
   }
 };
 
@@ -165,6 +173,7 @@ const combat = () => {
     .text("Your Being Attacked!")
     .addClass("attack-announce")
     .appendTo($combatButtonBox);
+  //This part <--------------
   if (isClicked === true) {
     enemyInCombat[0].attack(hero);
     $enemyImage.animate({ left: "+=1em" }, "fast");
@@ -183,12 +192,13 @@ const combat = () => {
     $restartButton.show();
     $gameOverImage.appendTo($gameOverScreen);
     $gameOverScreen.show();
+    clearTheGraveyard(enemyGraveyard);
   }
 
   if (enemyInCombat[0].hp <= 0) {
     for (index of enemyInCombat) {
       enemyGraveyard.push(index);
-    }
+    };
     $enemyImage.hide();
     enemyInCombat.pop();
     $combatButtonBox.hide();
@@ -229,6 +239,7 @@ $runButton.on("click", () => {
   }
 });
 
+// THIS!!!!!!!!!!!! <-----------
 $restartButton.on("click", () => {
   $gameOverScreen.hide();
   $(".maze-image").remove();
@@ -244,15 +255,9 @@ $restartButton.on("click", () => {
   $(".died").remove();
   $bossBattleImage.hide();
   $(".win-announce").remove();
-  // help here? //
-  for (index of enemyGraveyard) {
-    enemyGraveyard.pop();
-    enemyGraveyard.pop();
-    enemyGraveyard.pop();
-    enemyGraveyard.pop();
-    enemyGraveyard.pop();
-    enemyGraveyard.pop();
-  };
+  clearTheGraveyard(enemyGraveyard);
+  clearTheGraveyard(enemyInCombat);
+  
   console.log(enemyGraveyard);
 });
 
