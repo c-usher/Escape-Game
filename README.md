@@ -1,4 +1,4 @@
-# Game Title:
+# ESCAPE!
 ### Game Demo: https://c-usher.github.io/Escape-Game/
 
 ---
@@ -37,6 +37,19 @@ https://app.diagrams.net/#Hc-usher%2FEscape-Game%2Fmain%2FescapeDiagrams.drawio
 ## Font:
 
 Major Mono Display
+
+---
+## Stretch Goals:
+
+* Getting the enemy image to move back and forth when it attacked.
+
+* Having the reset button working properly.
+
+## Challenge:
+
+1. My biggest challenge I faced was getting the reset button to work properly. It was not clearing out the enemies killed.
+
+2. Another challenge I encountered was getting the image to move left and right when it attacks. A lot of my issues I was having was syntax and after some googling and taking a break I was able to get it to work.
 
 
 
