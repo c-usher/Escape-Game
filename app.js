@@ -37,6 +37,7 @@ const directionCards = [
   "defaultImages/pointingRightCard.png", //Right
   "defaultImages/pointingLeftCard.png", //Left
 ];
+
 const currentMazeImage = [];
 const enemyInCombat = [];
 const enemyGraveyard = [];
@@ -52,22 +53,28 @@ const $attackButton = $("#attack-button");
 const $runButton = $("#run-button");
 const $restartButton = $("#restart-button");
 const $combatButtonBox = $("#combat-button-box");
-const $bossBattleImage = $("<img>").attr(
-  "src",
-  "defaultImages/bossBattleImage.jpeg"
-).addClass("boss-image");
-const $gameOverImage = $("<img>").attr(
-  "src",
-  "defaultImages/gameOverImage.jpg"
-).addClass("game-over-image");
-const $enemyImage = $("<img>").attr("src", "defaultImages/enemy.png").addClass("enemy-image");
-const $escapePodImage = $("<img>").attr("src", "defaultImages/escapePod.png").addClass("win-image");
+
+const $bossBattleImage = $("<img>")
+  .attr("src", "defaultImages/bossBattleImage.jpeg")
+  .addClass("boss-image");
+
+const $gameOverImage = $("<img>")
+  .attr("src", "defaultImages/gameOverImage.jpg")
+  .addClass("game-over-image");
+
+const $enemyImage = $("<img>")
+  .attr("src", "defaultImages/enemy.png")
+  .addClass("enemy-image");
+
+const $escapePodImage = $("<img>")
+  .attr("src", "defaultImages/escapePod.png")
+  .addClass("win-image");
 
 const clearTheGraveyard = (array) => {
   while (array.length > 0) {
     array.pop();
-  };
-}
+  }
+};
 
 const $randomDirectionCard = () =>
   $("<img>").attr(
@@ -148,10 +155,7 @@ const createHand = () => {
 };
 
 const generateEnemy = () => {
-  const enemy = new Character(
-    15, Math.floor(Math.random() * 6) + 1,
-    "enemy"
-  );
+  const enemy = new Character(15, Math.floor(Math.random() * 6) + 1, "enemy");
   enemyInCombat.unshift(enemy);
 };
 
@@ -163,7 +167,7 @@ const generateBoss = () => {
 const generateHero = () => {
   hero = new Character(95, 10, "Cody");
 };
-
+// Its In Here <---------- !!!!!!
 const combat = () => {
   $combatButtonBox.show();
   $attackButton.show();
@@ -198,7 +202,7 @@ const combat = () => {
   if (enemyInCombat[0].hp <= 0) {
     for (index of enemyInCombat) {
       enemyGraveyard.push(index);
-    };
+    }
     $enemyImage.hide();
     enemyInCombat.pop();
     $combatButtonBox.hide();
@@ -255,9 +259,9 @@ $restartButton.on("click", () => {
   $(".died").remove();
   $bossBattleImage.hide();
   $(".win-announce").remove();
+  $(".energy-announce").remove();
   clearTheGraveyard(enemyGraveyard);
   clearTheGraveyard(enemyInCombat);
-  
   console.log(enemyGraveyard);
 });
 
