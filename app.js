@@ -91,6 +91,8 @@ const chosenDirection = () => {
     combat();
   } else {
     $combatButtonBox.hide();
+    $attackButton.hide();
+    $runButton.hide();
     $enemyImage.hide();
   }
 
@@ -100,6 +102,8 @@ const chosenDirection = () => {
     $mainScreen.append($bossBattleImage);
     $bossBattleImage.show();
     $combatButtonBox.show();
+    $attackButton.show();
+    $runButton.show();
     generateBoss();
     combat();
   }
@@ -108,6 +112,8 @@ const chosenDirection = () => {
     $bossBattleImage.hide();
     $(".maze-image").remove();
     $hand.hide();
+    $attackButton.hide();
+    $runButton.hide();
     $combatButtonBox.hide();
     $enemyImage.hide();
     $escapePodImage.appendTo($mainScreen);
@@ -152,6 +158,8 @@ const generateHero = () => {
 
 const combat = () => {
   $combatButtonBox.show();
+  $attackButton.show();
+  $runButton.show();
   $hand.hide();
   $(".attacked")
     .text("Your Being Attacked!")
@@ -166,6 +174,8 @@ const combat = () => {
   if (hero.hp <= 0) {
     $("<h1>").text("You Died!").addClass("died").appendTo($gameOverScreen);
     $combatButtonBox.hide();
+    $attackButton.hide();
+    $runButton.hide();
     $(".maze-image").hide();
     $enemyImage.hide();
     $bossBattleImage.hide();
@@ -182,6 +192,8 @@ const combat = () => {
     $enemyImage.hide();
     enemyInCombat.pop();
     $combatButtonBox.hide();
+    $attackButton.hide();
+    $runButton.hide();
     $hand.show();
   }
 };
@@ -221,6 +233,8 @@ $restartButton.on("click", () => {
   $gameOverScreen.hide();
   $(".maze-image").remove();
   $combatButtonBox.hide();
+  $attackButton.hide();
+  $runButton.hide();
   $hand.children().remove();
   $enemyImage.hide();
   $startScreen.show();
@@ -244,6 +258,8 @@ $restartButton.on("click", () => {
 
 $(() => {
   $combatButtonBox.hide();
+  $attackButton.hide();
+  $runButton.hide();
   $enemyImage.hide();
   $restartButton.hide();
 });
